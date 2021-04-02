@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Entdecke tausende Kunstwerke in deiner Umgebung" />
+
+    <title>Flano</title>
+
+    <link rel="icon" sizes="32x32" href="icons/favicon-32x32.png" type="image/png" />
+    <link rel="icon" sizes="16x16" href="icons/favicon-16x16.png" type="image/png" />
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+    <link rel="manifest" href="icons/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="icons/browserconfig.xml" />
+
+    <meta property="og:title" content="Flano - Die Stadt als Museum" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://flano.at" />
+    <!-- TODO: open graph preview image -->
+    <meta property="og:image" content="https://flano.at/images/opengraph_preview_img.png" />
+    <meta property="og:description" content="Entdecke tausende Kunstwerke in deiner Umgebung" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-wrapper">
+        <a href="#"><img src="images/logos/flano_logo.svg" alt="Flano" id="logo" /></a>
+        <div class="menu-btn">
+          <div class="menu-btn__burger"></div>
+        </div>
+        <nav>
+          <a href="#features">Funktionen</a>
+          <a href="#about">Über Flano</a>
+          <a href="#donate">Unterstütze Flano</a>
+          <a href="#contact">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero">
+        <div class="screenshot-container"></div>
+        <div class="aside-img">
+          <div>
+            <h1>Die Stadt als Museum</h1>
+            <p>Entdecke tausende Kunstwerke in deiner Umgebung</p>
+          </div>
+          <div class="app-store-links">
+            <div class="app-store-link-container">
+              <a href="TODO" target="blank">
+                <img class="apple" src="images/logos/appstore_logo_de.svg" alt="Apple App Store Logo" />
+              </a>
+            </div>
+            <div class="app-store-link-container">
+              <a href="TODO" target="blank">
+                <img src="images/logos/playstore_logo_de.svg" alt="Android Play Store Logo"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <h1>Funktionen</h1>
+        <div class="screenshot-container">
+          <img src="images/preview/preview_list_map.png" alt="Preview Image" class="scrolling" />
+        </div>
+        <div class="aside-img">
+          <h1>Funktionen</h1>
+          <div class="grid">
+            <div>
+              <p id="entdecke" class="active-preview"><strong>Entdecke</strong> Kunstwerke in deiner Nähe</p>
+            </div>
+            <div>
+              <p id="erfahre"><strong>Erfahre</strong> mehr über Kunstwerke, die dich interessieren</p>
+            </div>
+            <div>
+              <p id="teile"><strong>Teile</strong> deine Lieblingswerke mit deinen Freund:innen</p>
+            </div>
+            <div>
+              <p id="touren">
+                Lass dich auf von Kenner:innen kuratierten
+                <strong>Touren</strong> durch die Stadt führen
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h1>Über Flano</h1>
+        <ul>
+          <li>
+            <div class="list-header">
+              <h2>Was ist Flano?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Flano ist eine kostenlose App für iOS und Android, die es dir erlaubt, Kunstwerke im öffentlichen Raum
+                zu entdecken. Ob Denkmal, abstraktes Kunstobjekt, Jahrhunderte alte Statue oder Street Art, mit Flano
+                kannst du mehr darüber erfahren.
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Wo ist Flano verfügbar?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Derzeit beinhaltet Flano nur Kunstwerke im Raum Wien. Wir arbeiten jedoch daran, die App auch für andere Städte und Regionen verfügbar zu machen. 
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Woher stammen die Daten?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Wir sammeln Daten aus offiziellen Quellen, dazu zählen zurzeit die
+                <a href="https://digitales.wien.gv.at/open-data" target="blank">Open Data Plattform der Stadt Wien</a>
+                und die gesammelten Werke des
+                <a href="https://callelibre.at" target="blank"> Calle Libre Streetart Festivals</a>.
+                <br />
+                Du hast Ideen für zusätzliche Datenquellen? Kontaktiere uns gerne unter
+                <a href="mailto:contact@flano.at" target="blank">contact@flano.at</a>, wir freuen uns über jeden
+                Beitrag!
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Wo kann ich Flano herunterladen?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Du kannst Flano kostenlos im
+                <a href="TODO" target="blank">Apple App Store</a> und im
+                <a href="TODO" target="blank">Google Play Store</a> herunterladen.
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Muss ich mich bei Flano anmelden?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>Nein, du kannst Flano ohne Anmeldung vollständig nutzen.</p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Speichert Flano meine Daten?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Nein, nutzer:innenbezogene Daten werden weder gespeichert, noch an Dritte weitergegeben. Um dir
+                Kunstwerke in deiner Nähe zu zeigen, benötigt Flano deinen Standort, dieser wird aber auch nicht
+                gespeichert - du kannst Flano aber auch ohne Zugriff auf deinen Standort nutzen.
+                <br />
+                Deine gelikten und gespeicherten Werke werden nur lokal auf deinem Gerät gespeichert.
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Wer steckt hinter Flano?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Wir sind Dominik und Max, zwei Informatik-Studierende an der TU Wien. Im Rahmen unseres
+                Bachelor-Abschlussprojekts ist die Idee, das Konzept und Design für Flano entstanden.
+                <br />
+                Nun entwickeln wir Flano als Open Source Projekt weiter, um möglichst vielen Menschen Kunst im öffentlichen
+                Raum näher zu bringen.
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Ist Flano Open Source?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Ja, der gesamte Quellcode ist öffentlich auf GitHub zugänglich.
+                <br />
+                Wir freuen uns immer über Contributions in der Form von Issues und Pull Requests.
+              </p>
+            </div>
+            <hr />
+          </li>
+          <li>
+            <div class="list-header">
+              <h2>Wie kann ich Flano unterstützen?</h2>
+              <img src="images/chevron_right_solid.svg" alt="Open List Element" height="20" />
+            </div>
+            <div class="about-content">
+              <p>
+                Da wir mit Flano kein Geld einnehmen, sind wir auf freiwillige Spenden angewiesen, um den Service
+                weiterhin kostenlos anzubieten.
+                <br />
+                Wir freuen uns auch über jede Unterstützung bei der Weiterentwicklung von Flano. Egal, ob du dich an der
+                Entwicklung beteiligen möchtest, neue Ideen hast, oder uns einfach nur Feedback geben willst,
+                kontaktiere uns gerne unter
+                <a href="mailto:contact@flano.at" target="blank">contact@flano.at</a> oder auf
+                <a href="TODO" target="blank">GitHub</a>.
+              </p>
+            </div>
+            <hr />
+          </li>
+        </ul>
+      </section>
+
+      <section id="donate">
+        <h1>Unterstütze Flano</h1>
+        <p>
+          Derzeit arbeiten wir noch an einer Lösung, um Spenden zu empfangen.
+          <br />
+          Falls du uns dennoch schon unterstützen möchtest, kannst du uns gerne eine Email an
+          <a href="mailto:contact@flano.at">contact@flano.at</a> senden.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h1>Kontakt</h1>
+        <div class="icons-container">
+          <div class="logo-container">
+            <a href="mailto:contact@flano.at" target="blank">
+              <img src="images/logos/mail_logo.svg" alt="Email" />
+            </a>
+          </div>
+          <div class="logo-container">
+            <a href="TODO" target="blank"><img src="images/logos/github_logo.svg" alt="GitHub" /></a>
+          </div>
+          <div class="logo-container">
+            <a href="https://www.instagram.com/flanoapp/" target="blank"
+              ><img src="images/logos/instagram_logo.svg" alt="Instagram"
+            /></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-wrapper">
+        <p>&copy; Flano 2021</p>
+        <div class="bottom-links">
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="impressum.html">Impressum</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
