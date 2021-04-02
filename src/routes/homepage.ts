@@ -1,12 +1,13 @@
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import path from 'path';
 
 const router = express.Router();
 
-console.log('========================');
-console.log(path.join(__dirname, '..', '..', 'resources', 'website'));
-console.log('========================');
+const donate = async (req: Request, res: Response, next: NextFunction) => {
+    res.redirect('/#donate')
+};
+
+router.get('/donate', donate)
 router.use('/', express.static(path.join(__dirname, '..', '..', 'resources', 'website')));
-// router.use('/', express.static('resources/website'));
 
 export default router;
