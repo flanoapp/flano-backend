@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flano</title>
+
+    <link rel="icon" href="../favicon-16x16.png" sizes=16x16">
+    <link rel="icon" href="../favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:image" content="{{image}}">
+    <meta property="og:type" content="{{type}}">
+    <meta property="og:url" content="{{url}}">
+    <meta property="og:site_name" content="{{site_name}}">
+
+    <script defer>
+        const appURI = `flano:///objects/{{id}}`;
+        const currURL = window.location.href;
+
+        window.location.href = appURI;
+
+        const iOS = /iPad Simulator|iPhone Simulator|iPod Simulator|iPad|iPhone|iPod/i.test(navigator.platform);
+        const android = /Android/i.test(navigator.userAgent);
+
+        if ((iOS || android) && window.location.href === currURL) {
+            setTimeout(() => {
+                if (iOS) {
+                    window.location.href = 'https://apps.apple.com/at/app/testflight/id899247664?l=en';
+                } else {
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox&hl=de';
+                }
+            }, 500);
+        }
+
+        setTimeout(() => {
+            window.location.href = 'https://flano.at';
+        }, 1000);
+
+    </script>
+</head>
+<body>
+redirecting...
+</body>
+</html>

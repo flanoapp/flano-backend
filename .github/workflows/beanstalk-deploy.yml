@@ -1,0 +1,38 @@
+name: Deploy aws
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v1
+
+      - name: node setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build typescript and copy resources
+        run: npm run build
+
+      - name: Generate deployment package
+        run: npm run dist
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v13
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: flano-backend
+          environment_name: flano-backend-prod
+          version_label: 1.4.12
+          region: eu-central-1
+          deployment_package: dist/deploy.zip

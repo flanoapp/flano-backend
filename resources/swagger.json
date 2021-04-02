@@ -1,0 +1,742 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Flano",
+    "description": "docs for dynamic backend API for Flano",
+    "license": {
+      "name": "?"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/api/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Objects",
+      "description": "get and like Objects"
+    },
+    {
+      "name": "Tours",
+      "description": "get, post, put and delete Tours"
+    },
+    {
+      "name": "Categories",
+      "description": "gets all categories"
+    },
+    {
+      "name": "FetchData",
+      "description": "update the database with data from openData"
+    }
+  ],
+  "paths": {
+    "/objects": {
+      "get": {
+        "summary": "Get all objects",
+        "tags": [
+          "Objects"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "longitude",
+            "description": "Longitude of current position",
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "in": "query",
+            "name": "latitude",
+            "description": "Latitude of current position",
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "Number of Objects to skip (for pagination)",
+            "type": "number",
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of Objects to display (for pagination)",
+            "type": "number",
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "description": "Search term",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "JSON.stringify array of filter categories",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ListObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/objects/find/{objectIds}": {
+      "get": {
+        "summary": "Get array of objects by objectIds",
+        "tags": [
+          "Objects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "objectId",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ListObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/objects/{objectId}": {
+      "get": {
+        "summary": "Get object by objectId",
+        "tags": [
+          "Objects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "objectId",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DetailsObject"
+            }
+          }
+        }
+      }
+    },
+    "/objects/{objectId}/like": {
+      "patch": {
+        "summary": "Increment field 'likeCnt' of Object",
+        "tags": [
+          "Objects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "objectId",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DetailsObject"
+            }
+          }
+        }
+      }
+    },
+    "/objects/{objectId}/unlike": {
+      "patch": {
+        "summary": "Decrement field 'likeCnt' of Object",
+        "tags": [
+          "Objects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "objectId",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DetailsObject"
+            }
+          }
+        }
+      }
+    },
+    "/objects/markers": {
+      "get": {
+        "summary": "Get all markers",
+        "tags": [
+          "Objects"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Marker"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tours/": {
+      "get": {
+        "summary": "Get all tours",
+        "tags": [
+          "Tours"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tour"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Post a new tour",
+        "tags": [
+          "Tours"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tour",
+            "schema": {
+              "$ref": "#/definitions/Tour",
+              "required": [
+                "title",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        }
+      }
+    },
+    "/tours/{id}": {
+      "get": {
+        "summary": "Get tour by id",
+        "tags": [
+          "Tours"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update tour by id",
+        "tags": [
+          "Tours"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "tour",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete tour by id",
+        "tags": [
+          "Tours"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        }
+      }
+    },
+    "/tours/{id}/addObject": {
+      "put": {
+        "summary": "Add Object to Tour",
+        "tags": [
+          "Tours"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "uniqueItems": true,
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "objectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "uniqueItems": true
+            }
+          },
+          {
+            "in": "body",
+            "name": "index",
+            "schema": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "gets an array of all categories",
+        "tags": [
+          "Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchData": {
+      "put": {
+        "summary": "Update database while keeping values, which are not from openData, updated",
+        "tags": [
+          "FetchData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchData/reset": {
+      "put": {
+        "summary": "Reset database with data from openData. Deletes every value stored.\nDANGER!",
+        "tags": [
+          "FetchData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Image": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "imageSrc": {
+          "type": "string"
+        },
+        "copyright": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            },
+            "resourceUrl": {
+              "type": "string"
+            },
+            "license": {
+              "type": "string"
+            },
+            "licenseUrl": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "LatLng": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "stack": {
+          "type": "string"
+        }
+      }
+    },
+    "ListObject": {
+      "required": [
+        "objectId",
+        "coordinates",
+        "isTopSpot",
+        "image",
+        "title",
+        "category",
+        "distance"
+      ],
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "coordinates": {
+          "$ref": "#/definitions/LatLng"
+        },
+        "isTopSpot": {
+          "type": "boolean",
+          "default": false
+        },
+        "image": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "distance": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "DetailsObject": {
+      "required": [
+        "objectId",
+        "coordinates",
+        "isTopSpot",
+        "images",
+        "likeCnt",
+        "details"
+      ],
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "coordinates": {
+          "$ref": "#/definitions/LatLng"
+        },
+        "isTopSpot": {
+          "type": "boolean"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "likeCnt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "details": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "artist": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "artistCountry": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "biography": {
+              "type": "string"
+            },
+            "inscription": {
+              "type": "string"
+            },
+            "history": {
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "epoch": {
+              "type": "string"
+            },
+            "vulgarNames": {
+              "type": "string"
+            },
+            "material": {
+              "type": "string"
+            },
+            "literature": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "dataSource": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Marker": {
+      "type": "object",
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "coordinates": {
+          "$ref": "#/definitions/LatLng"
+        }
+      }
+    },
+    "Tour": {
+      "required": [
+        "id",
+        "title",
+        "description",
+        "objects",
+        "polyline"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Marker"
+          }
+        },
+        "polyline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LatLng"
+          }
+        }
+      }
+    }
+  }
+}
