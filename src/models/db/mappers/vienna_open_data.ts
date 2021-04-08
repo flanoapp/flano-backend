@@ -66,6 +66,7 @@ export const transferOldValues = (newObj: IFlanoObjectSchema, oldObj: IFlanoObje
         ...newObj,
         isTopSpot: oldObj.isTopSpot,
         images: oldObj.images,
+        thumbnail: oldObj.thumbnail,
         likeCount: oldObj.likeCount,
     });
 };
