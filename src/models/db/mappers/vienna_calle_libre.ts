@@ -37,7 +37,7 @@ export const viennaCalleLibreToDB = (obj: IViennaCalleLibreObject, dataSrc: IDat
                 description: obj['Mural Description'],
                 biography: obj['Artist Bio'],
                 address: obj['Mural Address'],
-                website: obj['Media'],
+                artistWebsite: obj['Media'],
             },
         });
     } catch (e) {
