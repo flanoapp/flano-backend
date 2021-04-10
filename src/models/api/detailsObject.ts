@@ -22,7 +22,7 @@ interface DetailsAPIFlanoObject {
         vulgarNames?: string;
         material?: string;
         literature?: string;
-        website?: string;
+        artistWebsite?: string;
         address?: string;
         dataSource?: string;
     }

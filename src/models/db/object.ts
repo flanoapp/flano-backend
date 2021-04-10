@@ -28,6 +28,7 @@ export interface IFlanoObjectSchema extends Document {
         material: string;
         literature: string;
         address: string;
+        artistWebsite: string;
     };
 }
 
@@ -57,6 +58,7 @@ export const flanoObjectSchema: Schema = new Schema({
             material: { type: String },
             literature: { type: String },
             address: { type: String },
+            artistWebsite: {type: String},
         }, required: true,
     },
 });
